@@ -1,10 +1,8 @@
 package com.example.p3samlfetch.entity;
 
-import jdk.jfr.DataAmount;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,23 +13,25 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user_table")
+@Table(name="users")
 
 public class user_data {
-@Id
-@GeneratedValue
-private int id;
-private String ufname;
-private String ulname;
-private String uemail;
-private String ugroup;
+    @Id
+    @GeneratedValue
+    private int seq_num;
+    private String uname;
+    private String ufname;
+    private String ulname;
+    private String u_email;
+    private String u_role;
+
 
     public int getId() {
-        return id;
+        return seq_num;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int seq_num) {
+        this.seq_num = seq_num;
     }
 
     public String getUfname() {
@@ -49,20 +49,27 @@ private String ugroup;
     public void setUlname(String ulname) {
         this.ulname = ulname;
     }
-
+    public String getUname(String uname)
+    {
+        return uname;
+    }
+    public void setUname(String uname)
+    {
+        this.uname=uname;
+    }
     public String getUemail() {
-        return uemail;
+        return u_email;
     }
 
-    public void setUemail(String uemail) {
-        this.uemail = uemail;
+    public void setUemail(String u_email) {
+        this.u_email = u_email;
     }
 
     public String getUgroup() {
-        return ugroup;
+        return u_role;
     }
 
-    public void setUgroup(String ugroup) {
-        this.ugroup = ugroup;
+    public void setUgroup(String u_role) {
+        this.u_role = u_role;
     }
 }

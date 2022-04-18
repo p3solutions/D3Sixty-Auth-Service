@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface user_repository extends JpaRepository<user_data, Integer> {
 
-    user_data findByUfname(String uname);
+    user_data findByUfname(String ufname);
+    user_data findByUname(String uname);
+
+
 }

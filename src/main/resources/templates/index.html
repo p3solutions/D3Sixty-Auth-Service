@@ -2,25 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<<<<<<< Updated upstream
-    <title>Title</title>
-=======
-    <title>Decom3SixtyTool SAML SSO Spring Service </title>
->>>>>>> Stashed changes
+    <title>Decom3SixtyTool</title>
 </head>
 <body>
 
-    <form action="https://localhost:8443/onboardTool/Login.jsp" name="testForm" method="post">
-    <input type="hidden" id="user_email" name="user_email" th:value="${Email}" />
+<form action="" name="testForm" id="testForm" method="post">
+    <input type="text" id="user_email" name="user_email" th:value="${Email}" />
     <input type="text" id="user_fname" name="user_fname" th:value="${Firstname}" />
     <input type="text" id="user_lname" name="user_lname" th:value="${Lastname}" />
+    <input type="text" id="username" name="username" th:value="${Username}" />
+    <input type="hidden" id="url" name="url" th:value="${url}" />
     <input type="text" id="user_group" name="user_group" th:value="${Group}" />
 
     <script>
-    window.onload = function(){
-    document.forms['testForm'].submit();
-    }
+        /* $('form').attr('action', '${url}');*/
+        window.onload = function(){
+            var action_src = document.getElementsByName("url")[0].value;
+            var your_form = document.getElementById('testForm');
+            your_form.action = action_src ;
+            document.forms['testForm'].submit();
+        }
+
+
     </script>
+
 </form>
 
 </body>

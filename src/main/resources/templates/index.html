@@ -1,6 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
 <head>
+<<<<<<< Updated upstream
     <meta charset="UTF-8">
     <title>Decom3SixtyTool SSO Spring Service</title>
 </head>
@@ -11,8 +16,21 @@
     <input type="text" id="user_fname" name="user_fname" th:value="${Firstname}" />
     <input type="text" id="user_lname" name="user_lname" th:value="${Lastname}" />
     <input type="text" id="username" name="username" th:value="${Username}" />
+=======
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Decom3SixtyTool</title>
+</head>
+<body>
+
+    <form action="" name="testForm" id="testForm" method="post">
+    <input type="hidden" id="user_email" name="user_email" th:value="${Email}" />
+    <input type="hidden" id="user_fname" name="user_fname" th:value="${Firstname}" />
+    <input type="hidden" id="user_lname" name="user_lname" th:value="${Lastname}" />
+    <input type="hidden" id="username" name="username" th:value="${Username}" />
+>>>>>>> Stashed changes
     <input type="hidden" id="url" name="url" th:value="${url}" />
-    <input type="text" id="user_group" name="user_group" th:value="${Group}" />
+    <input type="hidden" id="user_group" name="user_group" th:value="${Group}" />
 
     <script>
         /* $('form').attr('action', '${url}');*/

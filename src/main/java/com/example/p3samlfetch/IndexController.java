@@ -13,14 +13,26 @@ import org.springframework.security.saml.SAMLCredential;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 import java.util.Objects;
 
 @Controller
-public class IndexController
+@EnableWebMvc
+public class IndexController extends WebMvcConfigurerAdapter
 {
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry)
+    {
+        registry.addViewController("/index").setViewName("index");
+    }
     @Value("${security.saml2.Email}")
     String saml_email;
     @Value("${security.saml2.Firstname}")
@@ -39,7 +51,9 @@ public class IndexController
     @Autowired
 
     private user_repository repository;
-    @RequestMapping("/")
+    @RequestMapping(value="/", method = RequestMethod.GET)
+
+
     public String index(ExpiringUsernameAuthenticationToken userToken, Model model)
     {
 
@@ -91,11 +105,11 @@ public class IndexController
         model.addAttribute("url",decom);
 
 
-        user_data ufname=repository.findByUfname(u.getUfname());
+
         user_data uname=repository.findByUname(u.getUname());
 
 
-        if(Objects.isNull(ufname))
+        if(Objects.isNull(uname))
         {
             s.saveuser_data(u);
 
@@ -104,6 +118,7 @@ public class IndexController
         else {
             s.updateuserdata(u);
         }
-        return "/index";
+
+        return "index";
     }
 }

@@ -15,6 +15,8 @@
     <description>P3SamlFetch</description>
     <properties>
         <java.version>11</java.version>
+        <jacoco-maven-plugin.ver>0.8.2</jacoco-maven-plugin.ver>
+        <jasypt.spring.boot.starter.ver>3.0.3</jasypt.spring.boot.starter.ver>
     </properties>
     <dependencies>
         <dependency>
@@ -68,6 +70,20 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt.spring.boot.starter.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
@@ -85,6 +101,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
         </plugins>
     </build>
 

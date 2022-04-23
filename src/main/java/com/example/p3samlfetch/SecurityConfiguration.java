@@ -1,7 +1,5 @@
 package com.example.p3samlfetch;
 
-import static org.springframework.security.extensions.saml2.config.SAMLConfigurer.saml;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -9,27 +7,40 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import static org.springframework.security.extensions.saml2.config.SAMLConfigurer.saml;
+
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Value("${server.ssl.enabled}")
+    Boolean ssl_flag;
+
     @Value("${security.saml2.metadata-url}")
     String metadataUrl;
 
-    @Value("${server.ssl.key-alias}")
+    @Value("${saml_key_alias}")
     String keyAlias;
 
-    @Value("${server.ssl.key-store-password}")
+    @Value("${saml_keystore_pwd}")
     String password;
 
     @Value("${server.port}")
     String port;
 
-    @Value("${server.ssl.key-store}")
+    @Value("${saml_key_store_file}")
     String keyStoreFilePath;
-
+    String url_pattern;
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+        if(ssl_flag==true)
+        {
+            url_pattern="https";
+        }
+        if(ssl_flag==false)
+        {
+            url_pattern="http";
+        }
         http
             .authorizeRequests()
                 .antMatchers("/saml*").permitAll()
@@ -43,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .keyname(this.keyAlias)
                         .keyPassword(this.password)
                         .and()
-                    .protocol("https")
+                    .protocol(this.url_pattern)
                     .hostname(String.format("%s:%s", "localhost", this.port))
                     .basePath("/")
                     .and()

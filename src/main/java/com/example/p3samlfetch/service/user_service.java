@@ -5,9 +5,6 @@ import com.example.p3samlfetch.repository.user_repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 
 public class user_service {
@@ -20,20 +17,20 @@ public class user_service {
 
     public user_data updateuserdata(user_data u){
 
-        user_data existinguserfname=repository.findByUfname(u.getUfname());
+
         user_data existingusername=repository.findByUname(u.getUname());
-        if(existinguserfname.equals(null) && existingusername.equals(null))
+        if(existingusername.equals(null))
         {
             return null;
         }
         else
         {
-            existinguserfname.setUfname(u.getUfname());
-            existinguserfname.setUlname(u.getUlname());
-            existinguserfname.setUemail(u.getUemail());
-            existinguserfname.setUemail(u.getUname());
-            existinguserfname.setUgroup(u.getUgroup());
-            return repository.save(existinguserfname);
+            existingusername.setUfname(u.getUfname());
+            existingusername.setUlname(u.getUlname());
+            existingusername.setUemail(u.getUemail());
+            existingusername.setUemail(u.getUname());
+            existingusername.setUgroup(u.getUgroup());
+            return repository.save(existingusername);
         }
     }
 
